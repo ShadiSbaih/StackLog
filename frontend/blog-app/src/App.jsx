@@ -11,12 +11,13 @@ import BlogPostEditor from "./Pages/Admin/components/BlogPostEditor";
 import Comments from "./Pages/Admin/components/Comments";
 
 import PrivateRoute from "./routes/PrivateRoute";
+import UserProvider from "./context/userContext";
 
 function App() {
   return (
+    <UserProvider>
     <div >
       <Router>
-
         <Routes>
           {/* Default Route*/}
           <Route path="/" element={<BlogLandingPage />} />
@@ -50,6 +51,7 @@ function App() {
         }}
       />
     </div>
+    </UserProvider>
   )
 }
 

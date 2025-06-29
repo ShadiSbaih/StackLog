@@ -3,9 +3,11 @@ import { BLOG_NAVBAR_DATA, SIDE_MENU_DATA } from "../../utils/data"
 import { LuLogOut } from "react-icons/lu"
 import { useNavigate } from 'react-router-dom'
 import CharAvatar from '../Cards/CharAvatar';
+import { useContext } from 'react'
+import { UserContext } from '../../context/userContext'
 
-function SideMenu({ activeMenu, isBlogMenu }) {
-    const user = {name:"Shadi"};
+function SideMenu({ activeMenu, isBlogMenu ,setOpenSideMenu}) {
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleClick = (route) => {
@@ -13,11 +15,13 @@ function SideMenu({ activeMenu, isBlogMenu }) {
             handleLogout();
             return;
         }
+        setOpenSideMenu((prevState) => !prevState);
         navigate(route);
     }
 
     const handleLogout = () => {
         localStorage.clear();
+        setOpenSideMenu((prevState) => !prevState);
         navigate("/");
     }
     
@@ -27,7 +31,7 @@ function SideMenu({ activeMenu, isBlogMenu }) {
                 user && (
                     <div className="flex flex-col justify-center items-center gap-1 mb-7">
                         {user?.profileImageUrl ?
-                            (<img src={user?.profileImage || ""} alt="Profile Image" className="w-20 h-20 rounded-full bg-slate-400" />) :
+                            (<img src={user?.profileImageUrl || ""} alt="Profile Image" className="w-20 h-20 rounded-full bg-slate-400 object-cover border-2 border-gray-200"  />) :
                             (
                                 <CharAvatar
                                     fullName={user?.name || ""}
