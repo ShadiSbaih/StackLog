@@ -55,8 +55,7 @@ export const getDashboardSummary = asyncHandler(async (req, res) => {
     const totalLikes = totalLikesAgg[0]?.total || 0;
 
     res.status(200).json({
-        success: true,
-        message: 'Dashboard summary fetched successfully',
+
         stats: {
             totalPosts,
             drafts,

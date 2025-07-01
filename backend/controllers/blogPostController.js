@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import BlogPost from "../models/BlogPost.js";
 import asyncHandler from 'express-async-handler';
 
@@ -23,7 +22,6 @@ export const createPost = asyncHandler(async (req, res) => {
     await newPost.save();
 
     res.status(201).json({
-        message: "Post created successfully",
         newPost
     });
 });
@@ -61,8 +59,6 @@ export const updatePost = asyncHandler(async (req, res) => {
     });
 
     res.status(200).json({
-        status: "success",
-        message: "Post updated successfully",
         updatedPost
     });
 });
@@ -122,8 +118,6 @@ export const getAllPosts = asyncHandler(async (req, res) => {
     ]);
 
     res.status(200).json({
-        status: "success",
-        message: "Posts fetched successfully",
         posts,
         page,
         totalPages: Math.ceil(totalCount / limit),
@@ -150,8 +144,6 @@ export const getPostBySlug = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json({
-        status: "success",
-        message: "Post fetched successfully",
         post
     });
 });
@@ -164,8 +156,6 @@ export const getPostsByTag = asyncHandler(async (req, res) => {
         .populate('author', 'name profileImageUrl') // Populate author details
 
     res.status(200).json({
-        status: "success",
-        message: "Posts fetched successfully",
         posts
     });
 });
@@ -184,8 +174,7 @@ export const searchPosts = asyncHandler(async (req, res) => {
     }).populate('author', 'name profileImageUrl') // Populate author details
 
     res.status(200).json({
-        status: "success",
-        message: "Posts fetched successfully",
+
         posts
     });
 });
@@ -225,8 +214,6 @@ export const getTopPosts = asyncHandler(async (req, res) => {
         limit(5);// Limit to top 5 posts
 
     return res.status(200).json({
-        status: "success",
-        message: "Top posts fetched successfully",
         posts
     });
 });

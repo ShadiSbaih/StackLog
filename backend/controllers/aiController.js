@@ -24,8 +24,6 @@ export const generateBlogPost = asyncHandler(async (req, res) => {
     const rawText = response.text();
 
     res.status(200).json({
-        success: true,
-        message: 'Blog post generated successfully',
         rawText
     });
 });
